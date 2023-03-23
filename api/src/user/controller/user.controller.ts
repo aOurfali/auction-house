@@ -1,10 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { catchError, map, Observable, of } from 'rxjs';
-import { User } from '../models/user.interface';
+import { hasRoles } from 'src/auth/decorator/roles.decorater';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-guards';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { User, UserRole } from '../models/user.interface';
 import { UserService } from '../service/user.service';
 
 
-@Controller('user')
+@Controller('users')
 export class UserController {
 
     constructor(private userService: UserService) {}
@@ -31,6 +34,8 @@ export class UserController {
         return this.userService.findUser(params.id)
     }
 
+    @hasRoles(UserRole.USER)
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Get()
     findAllUsers(): Observable<User[]> {
         return this.userService.findAllUsers();
@@ -40,7 +45,7 @@ export class UserController {
     deleteUser(@Param('id')id: string): Observable<User> {
         return this.userService.deleteUser(Number(id));
     }
-
+    
     @Put('id')
     updateUser(@Param('id')id: string, @Body() user: User): Observable<any> {
         return this.userService.updateUser(Number(id), user);

@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcrypt';
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { UserRole } from "./user.interface";
 
@@ -19,11 +20,24 @@ export class UserEntity {
     @Column({select: false})
     password: string;
 
-    @Column({type: 'enum', enum: UserRole, default: UserRole.USER})
-    role: UserRole;
-
     @BeforeInsert()
     emailToLowerCase() {
         this.email = this.email.toLowerCase();
     }
+    
+    @Column({type: 'enum', enum: UserRole, default: UserRole.USER})
+    role: UserRole;
+    
+    /*
+    constructor(uId:    number,
+                name:   string,
+                uName:  string,
+                pass:   string,
+                role:   UserRole) {
+    this.id = uId;
+    this.name = name;
+    this.username = uName;
+    this.password = pass;
+    this.role = role;
+    }*/
 }

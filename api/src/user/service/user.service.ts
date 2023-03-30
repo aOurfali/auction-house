@@ -16,7 +16,7 @@ export class UserService {
     ) {}
     
     createUser(user: User): Observable<User> {
-        return this.authService.hashPassword(user.password).pipe(
+        return from(this.authService.hashPassword(user.password)).pipe(
             switchMap((passwordHash: string) => {
                 const newUser = new UserEntity();
                 newUser.name = user.name;
@@ -43,6 +43,14 @@ export class UserService {
                 return result;
             })
         )
+    }
+
+    async findUserByName(username: string): Promise<User | undefined> {
+        return this.userRepository.findOneBy({username})
+    }
+
+    getUserByName(name: string): Promise<UserEntity> {
+        return this.userRepository.findOneBy({ name });
     }
 
     findAllUsers(): Observable<User[]> {
@@ -86,8 +94,14 @@ export class UserService {
 
     validateUser(email: string, password: string): Observable<User> {
         
+    from(this.userRepository.findOneBy({email})).pipe(
+            map((user: User) => {
+                const {password, ...result} = user;
+                return result;
+            })
+        )
         return from(this.userRepository.findOneBy({email})).pipe(
-            switchMap((user: User) => this.authService.comparePasswords(password, user.password).pipe(
+            switchMap((user: User) => from(this.authService.comparePasswords(password, user.password)).pipe(
                 map((match: boolean) => {
                     if(match) {
                         console.log(user);

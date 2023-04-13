@@ -17,27 +17,17 @@ export class UserEntity {
     @Column()
     email: string;
 
-    @Column({select: false})
+    @Column()
     password: string;
+
+    @Column()
+    coin: number;
+
+    @Column({type: 'enum', enum: UserRole, default: UserRole.USER})
+    role: UserRole;
 
     @BeforeInsert()
     emailToLowerCase() {
         this.email = this.email.toLowerCase();
     }
-    
-    @Column({type: 'enum', enum: UserRole, default: UserRole.USER})
-    role: UserRole;
-    
-    /*
-    constructor(uId:    number,
-                name:   string,
-                uName:  string,
-                pass:   string,
-                role:   UserRole) {
-    this.id = uId;
-    this.name = name;
-    this.username = uName;
-    this.password = pass;
-    this.role = role;
-    }*/
 }

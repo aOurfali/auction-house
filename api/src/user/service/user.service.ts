@@ -45,11 +45,11 @@ export class UserService {
         )
     }
 
-    async findUserByName(username: string): Promise<User | undefined> {
+    findUserByUsername(username: string): Promise<User | undefined> {
         return this.userRepository.findOneBy({username})
     }
 
-    getUserByName(name: string): Promise<UserEntity> {
+    findUserByName(name: string): Promise<UserEntity> {
         return this.userRepository.findOneBy({ name });
     }
 
@@ -80,8 +80,19 @@ export class UserService {
         return from(this.userRepository.update(id, user));
     }
 
-    login(user: User): Observable<string> {
-        return this.validateUser(user.email, user.password).pipe(
+    login(username: string, password: string): Observable<string> {
+        return from(this.findUserByUsername(username)).pipe(
+            switchMap((user: User) => from(this.authService.comparePasswords(password, user.password)).pipe(
+                map((match: boolean) => {
+                    if(match) {
+                        const {password, ...result} = user;
+                        return result;
+                    } else {
+                        throw Error;
+                    }
+                })
+            ))
+        ).pipe(
             switchMap((user: User) => {
                 if(user) {
                     return this.authService.generateJWT(user).pipe(map((jwt: string) => jwt));
@@ -91,27 +102,4 @@ export class UserService {
             })
         )
     }
-
-    validateUser(email: string, password: string): Observable<User> {
-        
-    from(this.userRepository.findOneBy({email})).pipe(
-            map((user: User) => {
-                const {password, ...result} = user;
-                return result;
-            })
-        )
-        return from(this.userRepository.findOneBy({email})).pipe(
-            switchMap((user: User) => from(this.authService.comparePasswords(password, user.password)).pipe(
-                map((match: boolean) => {
-                    if(match) {
-                        console.log(user);
-                        const {password, ...result} = user;
-                        return result;
-                    } else {
-                        throw Error;
-                    }
-                })
-            ))
-        )
-    }  
 }

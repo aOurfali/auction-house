@@ -2,11 +2,10 @@ import { forwardRef, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from 'src/user/user.module';
-import { JwtAuthGuard } from './guards/jwt-auth.guards';
+import { JwtAuthGuard } from './guards/jwt-guards';
 import { JwtStrategy } from './guards/jwt.strategy';
 import { RolesGuard } from './guards/roles.guard';
 import { AuthService } from './services/auth.service';
-import { AuthController } from './controller/auth.controller';
 
 @Module({
     imports: [
@@ -21,8 +20,7 @@ import { AuthController } from './controller/auth.controller';
         }),
     ],
     providers: [AuthService, RolesGuard, JwtAuthGuard, JwtStrategy],
-    exports: [AuthService],
-    controllers: [AuthController]
+    exports: [AuthService]
 })
 
 export class AuthModule {

@@ -23,6 +23,7 @@ export class UserService {
                 newUser.username = user.username;
                 newUser.email = user.email;
                 newUser.password = passwordHash;
+                newUser.coin = user.coin;
                 newUser.role = UserRole.USER;
                
                 return from(this.userRepository.save(newUser)).pipe(

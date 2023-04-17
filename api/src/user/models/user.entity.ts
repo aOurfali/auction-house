@@ -1,4 +1,3 @@
-import * as bcrypt from 'bcrypt';
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { UserRole } from "./user.interface";
 

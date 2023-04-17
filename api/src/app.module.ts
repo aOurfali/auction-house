@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { UserModule } from './user/user.module';
 import { UserEntity } from './user/models/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { AuctionModule } from './auction/auction.module';
+import { AuctionEntity } from './auction/models/auction.entity';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }),
@@ -16,11 +18,12 @@ import { AuthModule } from './auth/auth.module';
       username: 'postgres',
       password: 'test',
       database: 'postgres',
-      entities: [UserEntity],
+      entities: [UserEntity, AuctionEntity],
       synchronize: true,
     }),
     UserModule,
-    AuthModule,],
+    AuthModule,
+    AuctionModule,],
   controllers: [AppController],
   providers: [AppService],
 })

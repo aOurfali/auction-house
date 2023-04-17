@@ -21,8 +21,8 @@ export class UserController {
     }
 
     @Post('login')
-    login(@Body() signInDto: Record<string, any>): Observable<Object> {
-        return this.userService.login(signInDto.username, signInDto.password).pipe(
+    login(@Body() signInData: Record<string, any>): Observable<Object> {
+        return this.userService.login(signInData.username, signInData.password).pipe(
             map((jwt: string) => {
                 return {access_token: jwt};
             })

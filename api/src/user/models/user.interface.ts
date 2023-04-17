@@ -4,6 +4,7 @@ export interface User {
     username?: string;
     email?: string;
     password?: string;
+    coin: number;
     role?: UserRole;
 }
 

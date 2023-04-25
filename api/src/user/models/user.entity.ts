@@ -1,5 +1,6 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserRole } from "./user.interface";
+import { OfferEntity } from "src/offer/models/offer.entity";
 
 @Entity()
 export class UserEntity {
@@ -24,6 +25,9 @@ export class UserEntity {
 
     @Column({type: 'enum', enum: UserRole, default: UserRole.USER})
     role: UserRole;
+
+    @OneToMany(() => OfferEntity, offer => offer.userId)
+    offers: OfferEntity[];
 
     @BeforeInsert()
     emailToLowerCase() {

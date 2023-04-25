@@ -8,6 +8,8 @@ import { UserEntity } from './user/models/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { AuctionModule } from './auction/auction.module';
 import { AuctionEntity } from './auction/models/auction.entity';
+import { OfferModule } from './offer/offer.module';
+import { OfferEntity } from './offer/models/offer.entity';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }),
@@ -18,12 +20,13 @@ import { AuctionEntity } from './auction/models/auction.entity';
       username: 'postgres',
       password: 'test',
       database: 'postgres',
-      entities: [UserEntity, AuctionEntity],
+      entities: [UserEntity, AuctionEntity, OfferEntity],
       synchronize: true,
     }),
     UserModule,
     AuthModule,
-    AuctionModule,],
+    AuctionModule,
+    OfferModule,],
   controllers: [AppController],
   providers: [AppService],
 })

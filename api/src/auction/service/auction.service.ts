@@ -10,11 +10,10 @@ import { request } from 'http';
 export class AuctionService {
     constructor (
         @InjectRepository(AuctionEntity)
-        private readonly auctionRepository: Repository<Auction>) {}
+        private readonly auctionRepository: Repository<AuctionEntity>) {}
         
     
     createAuction(auction: Auction): Promise<Auction> {
-      const item = this.auctionRepository.create(auction);
         return this.auctionRepository.save(auction);
     }
 

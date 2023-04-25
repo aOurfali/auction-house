@@ -1,7 +1,8 @@
 import { Duration } from 'ts-duration';
 
 import { UserEntity } from "src/user/models/user.entity";
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
+import { OfferEntity } from 'src/offer/models/offer.entity';
 
 @Entity()
 export class AuctionEntity {
@@ -14,6 +15,9 @@ export class AuctionEntity {
 
     @ManyToOne(() => UserEntity, (user) => user.id)
     userId: number;
+
+    @OneToMany(() => OfferEntity, offer => offer.auctionId)
+    offers: OfferEntity[];
 
     @Column()
     picture: string;

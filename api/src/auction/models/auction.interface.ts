@@ -7,6 +7,6 @@ export interface Auction {
     picture: string;
     title: string;
     description: string;
-    duration: Duration;
+    duration: number;
     startPrice: number;
 }

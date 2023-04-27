@@ -1,0 +1,12 @@
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+      <button pButton routerLink="admin">Admin</button>
+      <p-selectButton>
+          <button pButton  (click)="navigateTo('login')">Login</button>
+          <button pButton (click)="navigateTo('register')">Register</button>
+          <button pButton (click)="navigateTo('update-profile')">Update Profile</button>
+        </p-selectButton>
+    </div>
+</p-toolbar>
+<app-login></app-login>
+<router-outlet></router-outlet>

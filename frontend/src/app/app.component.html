@@ -1,12 +1,11 @@
 <p-toolbar>
-    <div class="p-toolbar-group-left">
-      <button pButton routerLink="admin">Admin</button>
-      <p-selectButton>
-          <button pButton  (click)="navigateTo('login')">Login</button>
-          <button pButton (click)="navigateTo('register')">Register</button>
-          <button pButton (click)="navigateTo('update-profile')">Update Profile</button>
-        </p-selectButton>
+    <div class="p-toolbar-group-start">
+    </div>
+
+    <div class="p-toolbar-group-end">
+      <button pButton (click)="navigateTo('login')" class="mr-2">Login</button>
+      <button pButton (click)="navigateTo('register')" class="mr-2">Register</button>
     </div>
 </p-toolbar>
-<app-login></app-login>
 <router-outlet></router-outlet>
+

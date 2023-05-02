@@ -11,22 +11,38 @@ import {ButtonModule} from 'primeng/button';
 import { OverviewComponent } from './overview/overview.component';
 import {ToolbarModule} from 'primeng/toolbar';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import { BlockUIModule } from 'primeng/blockui';
+import { DataViewModule } from 'primeng/dataview';
+import { RatingModule } from 'primeng/rating';
+import { TagModule } from 'primeng/tag';
+import { ErrorComponent } from './error/error.component';
+import { AccessComponent } from './access/access.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    OverviewComponent
+    OverviewComponent,
+    ErrorComponent,
+    AccessComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     CheckboxModule,
     InputTextModule,
     ButtonModule,
     ToolbarModule,
     SelectButtonModule,
+    BlockUIModule,
+    DataViewModule,
+    RatingModule,
+    TagModule,
     AppRoutingModule
   ],
   providers: [],

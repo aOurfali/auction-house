@@ -14,11 +14,13 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
-  login( email: string, password: string) {  
-    
-    return this.http.post<any>('http://localhost:3000/users/login', {email: email, password: password}).pipe(
+  login(username: string, password: string) {  
+
+    console.log(username);
+    console.log(password);
+    return this.http.post<any>('http://localhost:3000/users/login', {username: username, password: password}).pipe(
       map((token) => {
-        console.log('token' + token.access_token);
+        console.log(token.access_token)
         localStorage.setItem(JWT_NAME, token.access_token);
         return token;
       })

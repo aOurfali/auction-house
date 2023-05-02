@@ -14,10 +14,9 @@ export class LoginComponent implements OnInit {
     valCheck: string[] = ['remember'];
 
     loginForm: FormGroup = new FormGroup({
-      email: new FormControl(null, [
+      username: new FormControl(null, [
         Validators.required,
-        Validators.email,
-        Validators.minLength(6)
+        Validators.maxLength(64)
       ]),
       password: new FormControl(null, [
         Validators.required,
@@ -30,17 +29,13 @@ export class LoginComponent implements OnInit {
                 private router:           Router) {}
 
     ngOnInit() {
-      this.loginForm = this.formBuilder.group({
-        email: '',
-        password: ''
-      });
     }
 
     onSubmit(form: FormGroup) {
       if(this.loginForm.invalid){
         return;
       }
-      this.authService.login(form.value.email, form.value.password).pipe(
+      this.authService.login(form.value.username, form.value.password).pipe(
         map(() => this.router.navigate(['admin']))).subscribe();
     }
     

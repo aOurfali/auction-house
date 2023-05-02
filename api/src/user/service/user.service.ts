@@ -47,7 +47,7 @@ export class UserService {
     }
 
     findUserByUsername(username: string): Promise<User | undefined> {
-        return this.userRepository.findOneBy({username})
+        return this.userRepository.findOneBy({username});
     }
 
     findUserByName(name: string): Promise<UserEntity> {
@@ -82,7 +82,7 @@ export class UserService {
     }
 
     login(username: string, password: string): Observable<string> {
-        return from(this.findUserByUsername(username)).pipe(
+        return from(this.userRepository.findOneBy({username})).pipe(
             switchMap((user: User) => from(this.authService.comparePasswords(password, user.password)).pipe(
                 map((match: boolean) => {
                     if(match) {

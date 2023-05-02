@@ -18,8 +18,15 @@ import { TagModule } from 'primeng/tag';
 import { ErrorComponent } from './error/error.component';
 import { AccessComponent } from './access/access.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+import { JwtInterceptor } from './jwt.interceptor';
+import { WINDOW_PROVIDERS } from './wToken';
+import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 
-
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 
 @NgModule({
   declarations: [
@@ -43,9 +50,25 @@ import { ReactiveFormsModule } from '@angular/forms';
     DataViewModule,
     RatingModule,
     TagModule,
+    JwtModule.forRoot({
+      config: {
+       tokenGetter: tokenGetter,
+      allowedDomains: ["localhost:3000", "foo.com", "bar.com"]
+      },
+    }),
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    WINDOW_PROVIDERS,
+    JwtHelperService, 
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

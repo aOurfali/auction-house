@@ -15,8 +15,8 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   login( email: string, password: string) {  
-
-    return this.http.post<any>('/api/users/login', {email: email, password: password}).pipe(
+    
+    return this.http.post<any>('http://localhost:3000/users/login', {email: email, password: password}).pipe(
       map((token) => {
         console.log('token' + token.access_token);
         localStorage.setItem(JWT_NAME, token.access_token);

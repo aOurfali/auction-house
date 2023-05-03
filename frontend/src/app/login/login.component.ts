@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
         return;
       }
       this.authService.login(form.value.username, form.value.password).pipe(
-        map(() => this.router.navigate(['admin']))).subscribe();
-    }
+        map(token => {if(token.access_token != null ) {{this.router.navigate(['/home']);}}})).subscribe();
+  }
     
   binary: boolean = false;
 }

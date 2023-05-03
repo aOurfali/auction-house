@@ -15,14 +15,8 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   login(username: string, password: string) {  
-
-    console.log(username);
-    console.log(password);
     return this.http.post<any>('http://localhost:3000/users/login', {username: username, password: password}).pipe(
-      map((token) => {
-        console.log(token.access_token)
-        localStorage.setItem(JWT_NAME, token.access_token);
-        return token;
+      map((token) => { localStorage.setItem(JWT_NAME, token.access_token); return token;
       })
     )
   }
@@ -31,8 +25,8 @@ export class AuthenticationService {
     localStorage.removeItem(JWT_NAME);
   }
 
-  register(user: User) {
-    return this.http.post<any>('/api/users', user);
+  register(name: string, username: string, email: string, password: string) {
+    return this.http.post<any>('http://localhost:3000/users', {name: name, username: username, email: email, password: password, coin: 0});
   }
 
   isAuthenticated(): boolean {

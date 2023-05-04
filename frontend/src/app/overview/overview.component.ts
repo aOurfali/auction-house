@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Auction } from '../model/auction.interface';
 import { AuctionService } from '../services/auction.service';
+import { PhotoService } from '../services/photo.service';
 
 @Component({
   selector: 'app-overview',
@@ -9,15 +10,23 @@ import { AuctionService } from '../services/auction.service';
 })
 
 export class OverviewComponent implements OnInit {
-  products: Auction[] = [];
+    auctions: Auction[] = [];
 
     responsiveOptions: any[] = [];
 
-    constructor(private productService: AuctionService) {}
+    images: any[] = [];
+
+    constructor(private productService: AuctionService,
+                private photoService: PhotoService) {}
 
     ngOnInit() {
-        this.productService.getProducts().then((products: Auction[]) => {
-            this.products = products;
+
+        this.productService.getProducts().then(auctions => {
+            if (auctions) {this.auctions = auctions;}
+        });
+
+        this.photoService.getImages().then((images: any[]) => {
+            this.images = images;
         });
 
         this.responsiveOptions = [

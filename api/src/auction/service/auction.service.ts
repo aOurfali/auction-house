@@ -8,14 +8,29 @@ import { request } from 'http';
 
 @Injectable()
 export class AuctionService {
+
     constructor (
         @InjectRepository(AuctionEntity)
         private readonly auctionRepository: Repository<AuctionEntity>) {}
-        
+
+    updateAuction(auction: Auction): Observable<any> {
+        return from(this.auctionRepository.save(auction));
+    }
+
+    deleteAuction(id: number): Observable<any> {
+        return from(this.auctionRepository.delete(id));
+    }
+
+    findAllAuctions(): Observable<Auction[]> {
+        return from(this.auctionRepository.find());
+    }
+
+    findAuction(id: any): Observable<Auction> {
+       return from(this.auctionRepository.findOneBy({id}));
+    }
     
     createAuction(auction: Auction): Promise<Auction> {
         return this.auctionRepository.save(auction);
     }
-
 
 }

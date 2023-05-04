@@ -1,21 +1,18 @@
 <div class="grid p-fluid">
     <div class="col-12">
         <div class="card">
-            <h5>Last Viewed</h5>
-            <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false">
-                <ng-template let-product pTemplate="item">
+            <h1 class="center">Last Viewed</h1>
+            <p-carousel [value]="auctions" [numVisible]="5" [numScroll]="5" [circular]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-auction pTemplate="item">
                         <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
                             <div class="my-5">
-                                <img src="assets/demo/images/product/{{product.image}}" [alt]="product.name" class="shadow-4" width="50%"/>
+                                <img src="assets/demo/images/auction/{{auction.image}}" [alt]="auction.name" class="shadow-4" width="50%"/>
                             </div>
                             <div>
-                                <h5 class="mb-1">{{product.name}}</h5>
-                                <h6 class="mt-0 mb-3">${{product.price}}</h6>
-                                <span [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                                <div class="my-5">
-                                    <button pButton pRipple icon="pi pi-search" class="mr-2 p-button-rounded"></button>
-                                    <button pButton pRipple icon="pi pi-star-fill" class="mr-2 p-button-rounded p-button-success"></button>
-                                    <button pButton pRipple icon="pi pi-cog" class="p-button-rounded p-button-info"></button>
+                                <h5 class="mb-1">{{auction.name}}</h5>
+                                <h6 class="mt-0 mb-3">{{auction.price}}</h6>
+                                <div class="card flex flex-wrap gap-3 justify-content-center mb-4">
+                                    <p-button styleClass="justify-content-center p-button-rounded p-button-danger">offer</p-button>
                                 </div>
                             </div>
                         </div>

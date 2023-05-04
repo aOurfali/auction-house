@@ -1,5 +1,3 @@
-import { Duration } from "ts-duration";
-
 export interface Auction {
     id: number;
     name: string;

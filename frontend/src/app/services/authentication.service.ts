@@ -16,7 +16,7 @@ export class AuthenticationService {
 
   login(username: string, password: string) {  
     return this.http.post<any>('http://localhost:3000/users/login', {username: username, password: password}).pipe(
-      map((token) => { localStorage.setItem(JWT_NAME, token.access_token); return token;
+      map((token) => { localStorage.setItem(JWT_NAME, token.access_token); console.log(token); return token;
       })
     )
   }

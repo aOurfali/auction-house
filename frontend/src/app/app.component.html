@@ -1,11 +1,34 @@
 <p-toolbar>
-    <div class="p-toolbar-group-start">
+    <div class="p-toolbar-group-start" *ngIf = "isAuthenticated()">
+      <div class="card flex flex-wrap gap-3 justify-content-center mb-4">
+        <p-button (click)="navigateTo('myAuctions')" styleClass="p-button-rounded p-button-primary">Home</p-button>
+        <p-button (click)="navigateTo('myAuctions')" styleClass="p-button-rounded p-button-primary">My Auctions</p-button>
+        <p-button (click)="navigateTo('Auctions')" styleClass="p-button-rounded p-button-primary">Auctions</p-button>
+      </div>
+    </div>
+    <div class="card flex flex-wrap justify-content-center gap-3 mb-4" *ngIf = "isAuthenticated()">
+      <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText/>
+      </span>
+    </div>
+    <div class="p-toolbar-group-end" *ngIf = "isAuthenticated()">
+      <div class="flex justify-content-center flex-wrap gap-3 mb-4">
+        <p-button icon="pi pi-user" (click)="navigateTo('profile')" styleClass="p-button-rounded p-button-primary p-button-outlined"></p-button>
+        <p-button icon="pi pi-sign-out" (click)="logout()" styleClass="p-button-rounded p-button-primary p-button-outlined"></p-button>
+      </div>
     </div>
 
-    <div class="p-toolbar-group-end">
-      <button pButton (click)="navigateTo('login')" class="mr-2">Login</button>
-      <button pButton (click)="navigateTo('register')" class="mr-2">Register</button>
+    <div class="p-toolbar-group-start" *ngIf = "!isAuthenticated()">
     </div>
+
+    <div class="p-toolbar-group-end" *ngIf = "!isAuthenticated()">
+      <div class="card flex flex-wrap gap-3 justify-content-center mb-4">
+        <p-button (click)="navigateTo('login')" styleClass="p-button-rounded p-button-primary">Login</p-button>
+        <p-button (click)="navigateTo('register')" styleClass="p-button-rounded p-button-primary">Register</p-button>
+      </div>
+    </div>
+    
 </p-toolbar>
 <router-outlet></router-outlet>
 

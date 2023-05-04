@@ -23,6 +23,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './jwt.interceptor';
 import { WINDOW_PROVIDERS } from './wToken';
 import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
+import { CarouselModule } from 'primeng/carousel';
+import { LogoutComponent } from './logout/logout.component';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -35,7 +37,8 @@ export function tokenGetter() {
     RegisterComponent,
     OverviewComponent,
     ErrorComponent,
-    AccessComponent
+    AccessComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ export function tokenGetter() {
     DataViewModule,
     RatingModule,
     TagModule,
+    CarouselModule,
     JwtModule.forRoot({
       config: {
        tokenGetter: tokenGetter,

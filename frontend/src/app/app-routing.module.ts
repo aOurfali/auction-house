@@ -4,6 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorComponent } from './error/error.component';
 import { OverviewComponent } from './overview/overview.component';
+import { AuctionsComponent } from './auctions/auctions.component';
+import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,18 @@ const routes: Routes = [
   {
     path: 'home',
     component: OverviewComponent
+  },
+  {
+    path: 'auctions',
+    component: AuctionsComponent
+  },
+  {
+    path: 'myAuctions',
+    component: MyAuctionsComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 

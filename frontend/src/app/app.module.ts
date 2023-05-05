@@ -25,6 +25,9 @@ import { WINDOW_PROVIDERS } from './wToken';
 import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { CarouselModule } from 'primeng/carousel';
 import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuctionsComponent } from './auctions/auctions.component';
+import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -38,7 +41,10 @@ export function tokenGetter() {
     OverviewComponent,
     ErrorComponent,
     AccessComponent,
-    LogoutComponent
+    LogoutComponent,
+    ProfileComponent,
+    AuctionsComponent,
+    MyAuctionsComponent
   ],
   imports: [
     BrowserModule,

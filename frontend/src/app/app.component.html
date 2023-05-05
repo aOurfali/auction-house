@@ -1,9 +1,9 @@
 <p-toolbar>
     <div class="p-toolbar-group-start" *ngIf = "isAuthenticated()">
       <div class="card flex flex-wrap gap-3 justify-content-center mb-4">
-        <p-button (click)="navigateTo('myAuctions')" styleClass="p-button-rounded p-button-primary">Home</p-button>
+        <p-button (click)="navigateTo('home')" styleClass="p-button-rounded p-button-primary">Home</p-button>
         <p-button (click)="navigateTo('myAuctions')" styleClass="p-button-rounded p-button-primary">My Auctions</p-button>
-        <p-button (click)="navigateTo('Auctions')" styleClass="p-button-rounded p-button-primary">Auctions</p-button>
+        <p-button (click)="navigateTo('auctions')" styleClass="p-button-rounded p-button-primary">Auctions</p-button>
       </div>
     </div>
     <div class="card flex flex-wrap justify-content-center gap-3 mb-4" *ngIf = "isAuthenticated()">
@@ -20,6 +20,7 @@
     </div>
 
     <div class="p-toolbar-group-start" *ngIf = "!isAuthenticated()">
+      <p-button (click)="navigateTo('home')" styleClass="p-button-rounded p-button-primary">Home</p-button>
     </div>
 
     <div class="p-toolbar-group-end" *ngIf = "!isAuthenticated()">

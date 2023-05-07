@@ -13,6 +13,10 @@ import { map } from 'rxjs';
 export class LoginComponent implements OnInit {
     valCheck: string[] = ['remember'];
 
+    password: string = '';
+
+    toggleMask: boolean = false;
+
     loginForm: FormGroup = new FormGroup({
       username: new FormControl(null, [
         Validators.required,

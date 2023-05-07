@@ -13,34 +13,14 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path: 'loginError',
-    component: ErrorComponent
-  },
-  {
-    path: 'home',
-    component: OverviewComponent
-  },
-  {
-    path: 'auctions',
-    component: AuctionsComponent
-  },
-  {
-    path: 'myAuctions',
-    component: MyAuctionsComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
-  }
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: OverviewComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'loginError', component: ErrorComponent },
+  { path: 'auctions', component: AuctionsComponent },
+  { path: 'myAuctions', component: MyAuctionsComponent },
+  { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({

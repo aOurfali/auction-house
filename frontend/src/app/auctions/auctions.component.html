@@ -1,1 +1,29 @@
-<p>auctions works!</p>
+<div class="grid p-fluid">
+    <div class="col-12">
+        <div class="card">
+            <h1 class="center">All Auctions</h1>
+            <p-carousel [value]="auctions" [numVisible]="4" [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
+                <ng-template let-auction pTemplate="gridItem">
+                    <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2">
+                        <div class="p-4 border-1 surface-border surface-card border-round">
+                            <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+                                <span class="flex align-items-center gap-2">
+                                    <i class="pi pi-tag"></i>
+                                    <span class="font-semibold">{{ auction.category }}</span>
+                                </span>
+                            </div>
+                            <div class="flex flex-column align-items-center gap-3 py-5">
+                                <img class="w-9 shadow-2 border-round" [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + auction.image" [alt]="auction.name" />
+                                <div class="text-2xl font-bold">{{ auction.name }}</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-between">
+                                <span class="text-2xl font-semibold">{{ auction.price }}</span>
+                                <p-button styleClass="justify-content-center p-button-rounded p-button-danger">offer</p-button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+<div class="grid p-fluid">

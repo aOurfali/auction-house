@@ -12,7 +12,7 @@ import { OverviewComponent } from './overview/overview.component';
 import {ToolbarModule} from 'primeng/toolbar';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { BlockUIModule } from 'primeng/blockui';
-import { DataViewModule } from 'primeng/dataview';
+import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { ErrorComponent } from './error/error.component';
@@ -28,6 +28,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuctionsComponent } from './auctions/auctions.component';
 import { MyAuctionsComponent } from './my-auctions/my-auctions.component';
+import { PasswordModule } from 'primeng/password';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -59,6 +60,7 @@ export function tokenGetter() {
     DataViewModule,
     RatingModule,
     TagModule,
+    PasswordModule,
     CarouselModule,
     JwtModule.forRoot({
       config: {
